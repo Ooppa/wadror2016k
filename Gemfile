@@ -9,11 +9,15 @@ gem 'coffee-script-source', '1.8.0'
 # ja lisää johonkin kohtaa tiedostoa seuraavat
 group :development, :test do
   gem 'sqlite3'
+  gem "better_errors"
 end
 group :production do
    gem 'pg'
    gem 'rails_12factor'
 end
+
+# Tip: add gem "binding_of_caller" to your Gemfile to enable the REPL and local/instance variable inspection. 
+gem 'binding_of_caller'
 
 # ---------------------------------------------------------------------------- #
 

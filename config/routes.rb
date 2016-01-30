@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  resources :beers
+	resources :beers
 
-  resources :breweries
-
-  get 'ratings', to: 'ratings#index'
-
+	resources :breweries
+	resources :ratings, only: [:index, :new, :create]
 end
