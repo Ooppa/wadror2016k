@@ -16,7 +16,9 @@ group :production do
    gem 'rails_12factor'
 end
 
-# Tip: add gem "binding_of_caller" to your Gemfile to enable the REPL and local/instance variable inspection. 
+gem 'bcrypt', '~> 3.1.7'
+
+# Tip: add gem "binding_of_caller" to your Gemfile to enable the REPL and local/instance variable inspection.
 gem 'binding_of_caller'
 
 # ---------------------------------------------------------------------------- #

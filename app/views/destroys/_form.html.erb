@@ -1,0 +1,21 @@
+<%= form_for(@destroy) do |f| %>
+  <% if @destroy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destroy.errors.count, "error") %> prohibited this destroy from being saved:</h2>
+
+      <ul>
+      <% @destroy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :membership %><br>
+    <%= f.text_field :membership %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
