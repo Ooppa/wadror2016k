@@ -1,9 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+<h1><%= @user.username %></strong></h1>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p>has made <%= pluralize(@user.ratings.count, 'rating') %> ratings</p>
+
+<% if @user.beer_clubs %>
+    <h3>Member of</h3>
+    <ul>
+      <% @user.beer_clubs.each do |beer_club| %>
+          <li> <%= link_to beer_club.name, beer_club_path(beer_club)%> </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<% if @user.ratings %>
+<h3>Ratings</h3>
+<ul>
+  <% @user.ratings.each do |rating| %>
+    <li> <%= rating %>
+      <% if @user == current_user %>
+        <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+      <% end %>
+  <% end %>
+</ul>
+<% end %>
+
+<% if @user == current_user %>
+  <%= link_to 'Edit', edit_user_path(@user) %>
+<% end %>
