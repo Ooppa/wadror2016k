@@ -1,7 +1,7 @@
 language: ruby
 
 rvm:
- - 4.1.8
+ - 2.1.5
 
 script:
  - bundle exec rake db:migrate --trace
