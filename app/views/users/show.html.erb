@@ -4,6 +4,14 @@
 
 <p>has made <%= pluralize(@user.ratings.count, 'rating') %> ratings</p>
 
+<% if @user.favorite_brewery %>
+    <p>Favorite brewery: <%= @user.favorite_brewery %></p>
+<% end %>
+
+<% if @user.favorite_style %>
+<p>Favorite style: <%= @user.favorite_style %></p>
+<% end %>
+
 <% if @user.beer_clubs %>
     <h3>Member of</h3>
     <ul>
