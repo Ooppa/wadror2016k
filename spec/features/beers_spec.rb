@@ -12,7 +12,6 @@ describe "Beer" do
 
   it "when creating new beer with valid name, it is added to database" do
     visit new_beer_path
-    save_and_open_page
     fill_in('beer[name]', with:'Pikku Kakkonen')
     expect{
       click_button "Create Beer"

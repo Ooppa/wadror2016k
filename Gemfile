@@ -26,6 +26,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-its'
+  gem 'simplecov', require: false
 end
 
 # defaults
