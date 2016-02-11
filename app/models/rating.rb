@@ -7,7 +7,7 @@ class Rating < ActiveRecord::Base
 
 
   def create
-    @rating = Rating.new params.require(:rating).permit(:score, :beer_id)
+    @rating = Rating.new params.require(:rating).permit(:score, :beer_id, :user_id)
 
     if @rating.save
       current_user.ratings << @rating
