@@ -1,5 +1,7 @@
-module RatingAverage extend ActiveSupport::Concern
+module RatingAverage
+  extend ActiveSupport::Concern
+
   def average_rating
-    self.ratings.average(:score).round(2)
+    ratings.inject(0.0){ |sum, r| sum+r.score } / ratings.count
   end
 end
