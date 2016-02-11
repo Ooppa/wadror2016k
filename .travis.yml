@@ -3,6 +3,9 @@ language: ruby
 rvm:
  - 2.1.5
 
+gemfile:
+ - "/Custom/Gemfile"
+
 script:
  - bundle install
  - bundle exec rake db:migrate --trace
