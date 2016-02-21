@@ -6,18 +6,9 @@
 <% end %>
 
 <% if @places %>
-  <table>
-    <thead>
-      <% Place.rendered_fields.each do |f| %>
-        <td><%=f %></td>
+  <ul class="list-unstyled">
+      <% @places.each do |place| %>
+        <li><%= link_to place.send(:name), place_path(place.send(:id)) %></li>
       <% end %>
-    </thead>
-    <% @places.each do |place| %>
-      <tr>
-        <% Place.rendered_fields.each do |f| %>
-          <td><%= place.send(f) %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
+  </ul>
 <% end %>

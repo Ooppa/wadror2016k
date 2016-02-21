@@ -6,6 +6,10 @@ rvm:
 gemfile:
  - "/Custom/Gemfile"
 
+env:
+ - APIKEY=nokey
+ - GOOGLE_APIKEY=AIzaSyAGK9daAJUUTM-ijqj0x8wlHnIoHF1y2ts
+
 script:
  - bundle install
  - bundle exec rake db:migrate --trace
