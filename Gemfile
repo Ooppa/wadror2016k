@@ -9,6 +9,9 @@ gem 'coffee-script-source', '1.8.0'
 # password
 gem 'bcrypt', '~> 3.1.7'
 
+# API kyselyt
+gem 'httparty'
+
 # groups
 group :development do
   gem 'sqlite3'
