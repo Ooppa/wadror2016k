@@ -10,6 +10,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'helpers'
+require 'webmock/rspec'
 
 ActiveRecord::Migration.maintain_test_schema!
 
