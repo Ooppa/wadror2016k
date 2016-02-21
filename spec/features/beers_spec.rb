@@ -3,15 +3,20 @@ require 'rails_helper'
 include Helpers
 
 describe "Beer" do
+  let!(:style) { FactoryGirl.create :style, name:"Lager", description:"Lager is beer."}
   let!(:user) { FactoryGirl.create :user }
   let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
 
   before :each do
     sign_in(username:"Pekka", password:"Foobar1")
+
+    FactoryGirl.create(:style, name: "Lager", description: "Lager is beer.")
+    FactoryGirl.create(:style, name: "IPA", description: "IPA is beer as well.")
   end
 
   it "when creating new beer with valid name, it is added to database" do
     visit new_beer_path
+    #save_and_open_page
     fill_in('beer[name]', with:'Pikku Kakkonen')
     expect{
       click_button "Create Beer"

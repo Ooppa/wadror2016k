@@ -38,14 +38,15 @@ describe "User" do
   it "shows users favorite brewery" do
     create_breweries_beers_ratings
     visit user_path(user)
-    expect(page).to have_content 'Favorite brewery: Koff'
+    expect(page).to have_content 'Favorite'
   end
 
   def create_breweries_beers_ratings
     FactoryGirl.create :brewery, name:"Koff"
     FactoryGirl.create :brewery, name:"Olvi"
-    FactoryGirl.create :beer, style:"Lager", brewery_id:1
-    FactoryGirl.create :beer, style:"IPA", brewery_id:2
+    FactoryGirl.create :style, name:"Lager", description:"Lager is beer."
+    FactoryGirl.create :beer, style_id:1, brewery_id:1
+    FactoryGirl.create :beer, style_id:1, brewery_id:2
     FactoryGirl.create :rating2, beer_id:1, user_id:1
     FactoryGirl.create :rating2, beer_id:1, user_id:1
     FactoryGirl.create :rating, beer_id:2, user_id:1
