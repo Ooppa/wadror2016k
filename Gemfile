@@ -12,6 +12,9 @@ gem 'bcrypt', '~> 3.1.7'
 # API kyselyt
 gem 'httparty'
 
+# Bootsrap
+gem 'bootstrap-sass'
+
 # groups
 group :development do
   gem 'sqlite3'
@@ -19,6 +22,7 @@ group :development do
   gem 'web-console'
   gem "better_errors"
   gem 'rspec-rails'
+  gem 'rails_layout'
 end
 group :production do
    gem 'pg'

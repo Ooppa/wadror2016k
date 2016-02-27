@@ -38,6 +38,6 @@
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
+<%= link_to 'Edit', edit_beer_club_path(@beer_club), class:'btn btn-default btn-xs' %>
 <%= link_to 'Destroy', @beer_club, method: :delete, data:
-    { confirm: 'Are you sure?' } if current_user %>
+    { confirm: 'Are you sure?' } if current_user, class:'btn btn-default btn-xs' %>

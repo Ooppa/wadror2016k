@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root :to => 'home#index'
+
   resources :styles
   resources :memberships
   resources :beer_clubs

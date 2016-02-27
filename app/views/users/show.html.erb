@@ -27,12 +27,12 @@
   <% @user.ratings.each do |rating| %>
     <li> <%= rating %>
       <% if @user == current_user %>
-        <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+        <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default btn-xs' %></li>
       <% end %>
   <% end %>
 </ul>
 <% end %>
 
 <% if @user == current_user %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
+  <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-default btn-xs' %>
 <% end %>
