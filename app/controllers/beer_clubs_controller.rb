@@ -15,7 +15,7 @@ class BeerClubsController < ApplicationController
       @membership.user = current_user
       @membership.beer_club = @beer_club
     end
-    
+
     if current_user && @beer_club.members.include?(current_user)
       @membership = Membership.find_by(user_id: current_user.id, beer_club_id:@beer_club.id)
     end
@@ -63,10 +63,17 @@ class BeerClubsController < ApplicationController
   # DELETE /beer_clubs/1
   # DELETE /beer_clubs/1.json
   def destroy
-    @beer_club.destroy
-    respond_to do |format|
-      format.html { redirect_to beer_clubs_url, notice: 'Beer club was successfully destroyed.' }
-      format.json { head :no_content }
+    if is_admin
+      @beer_club.destroy
+      respond_to do |format|
+        format.html { redirect_to beer_clubs_url, notice: 'Beer club was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to beer_clubs_url, notice: 'Only admins can do that!' }
+        format.json { head :no_content }
+      end
     end
   end
 

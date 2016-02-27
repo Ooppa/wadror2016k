@@ -60,11 +60,19 @@ class BeersController < ApplicationController
   # DELETE /beers/1
   # DELETE /beers/1.json
   def destroy
-    @beer.destroy
-    respond_to do |format|
-      format.html { redirect_to beers_url, notice: 'Beer was successfully destroyed.' }
-      format.json { head :no_content }
+    if is_admin
+      @beer.destroy
+      respond_to do |format|
+        format.html { redirect_to beers_url, notice: 'Beer was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to beers_url, notice: 'Only admins can do that!' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   def set_breweries_and_styles_for_template

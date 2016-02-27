@@ -1,15 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @user.username %></strong></h1>
+<h1><%= @user.username %>
+  <% if @user.froze %>
+    <span class="label label-info">account frozen</span>
+  <% end %>
+  <% if @user.admin %>
+    <span class="label label-danger">admin</span>
+  <% end %>
+</h1>
 
 <p>has made <%= pluralize(@user.ratings.count, 'rating') %> ratings</p>
 
 <% if @user.favorite_brewery %>
-    <p>Favorite brewery: <%= @user.favorite_brewery %></p>
+    <p>Favorite brewery: <%= link_to @user.favorite_brewery.name, brewery_path(@user.favorite_brewery) %></p>
 <% end %>
 
 <% if @user.favorite_style %>
-<p>Favorite style: <%= @user.favorite_style %></p>
+<p>Favorite style: <%= link_to @user.favorite_style, style_path(@user.favorite_style) %></p>
 <% end %>
 
 <% if @user.beer_clubs %>
@@ -32,7 +39,8 @@
   <% end %>
 </ul>
 <% end %>
-
+<br />
+<%= link_to "change account status", froze_and_activate_user_path(@user.id), method: :post, class: "btn btn-danger btn-xs" if current_user && current_user.admin %>
 <% if @user == current_user %>
   <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-default btn-xs' %>
 <% end %>

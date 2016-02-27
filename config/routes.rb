@@ -17,4 +17,11 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
+
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
+  resources :users do
+    post 'froze_and_activate', on: :member
+  end
 end
