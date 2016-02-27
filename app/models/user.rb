@@ -26,10 +26,6 @@ class User < ActiveRecord::Base
     favorite :style
   end
 
-  def favorite_brewery
-    favorite :brewery
-  end
-
   def favorite(category)
     return nil if ratings.empty?
     rated = ratings.map{ |r| r.beer.send(category) }.uniq
@@ -44,6 +40,16 @@ class User < ActiveRecord::Base
   def favorite_brewery
     return nil if ratings.empty?
     h = Brewery.joins(:ratings, :beers).select("breweries.name, ratings.score").group("breweries.name").average(:score)
-    h.key(h.values.max)
+    Brewery.find_by(name: h.key(h.values.max))
+  end
+
+  def most_active_users(n)
+    h = User.joins(:ratings).select("users.username, rating.user_id").group(:username).count(:user_id).sort_by {|k,v| v}.reverse[0..n]
+    hash = {}
+      h.each do |key, value|
+        u = User.find_by(:username => key)
+        hash[u] = value
+      end
+    hash
   end
 end
