@@ -27,4 +27,6 @@ Rails.application.routes.draw do
 
   # JS Toiminnallisuus
   get 'beerlist', to:'beers#list'
+  get 'brewerylist', to:'breweries#nglist'
+  get 'ngbeerlist', to:'beers#nglist'
 end
