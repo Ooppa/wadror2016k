@@ -1,6 +1,7 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_signed_in, except: [:index, :show, :list]
+  before_action :skip_if_cached, only: [:index]
 
   # GET /breweries
   # GET /breweries.json
@@ -48,6 +49,7 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
+    expire_frags
     @brewery = Brewery.new(brewery_params)
 
     respond_to do |format|
@@ -64,6 +66,7 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1
   # PATCH/PUT /breweries/1.json
   def update
+    expire_frags
     respond_to do |format|
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
@@ -78,6 +81,7 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1
   # DELETE /breweries/1.json
   def destroy
+    expire_frags
     if is_admin
       @brewery.destroy
       respond_to do |format|
@@ -101,7 +105,17 @@ class BreweriesController < ApplicationController
     redirect_to :back, notice:"brewery activity status changed to #{new_status}"
   end
 
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if fragment_exist?( "brewerylist-#{@order}"  )
+  end
+
   private
+
+    def expire_frags
+      ["brewerylist-name", "breweylist-year"].each{ |f| expire_fragment(f) }
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
       @brewery = Brewery.find(params[:id])

@@ -18,6 +18,9 @@ gem 'bootstrap-sass'
 # JS Toiminnallisuus
 gem 'jquery-turbolinks'
 
+# Miniprofileri
+gem 'rack-mini-profiler'
+
 # groups
 group :development do
   gem 'sqlite3'

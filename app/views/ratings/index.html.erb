@@ -1,5 +1,8 @@
 <div class="row">
   <h1>Rating statistics</h1>
+
+  <% cache "ratinglist-#{@order}" do %>
+
   <div class="col-sm-12">
     <div class="row">
       <div class="col-sm-4">
@@ -60,5 +63,6 @@
   </div>
 </div>
 
+<% end %>
 
 <%= link_to 'Create new rating', new_rating_path, class:'btn btn-default btn-xs' %>
