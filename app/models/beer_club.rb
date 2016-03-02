@@ -15,4 +15,24 @@ class BeerClub < ActiveRecord::Base
   def to_s
     "#{name} #{city}"
   end
+
+  def isMember(user)
+    membership = self.memberships.find_by(user_id: user.id, beer_club_id: self.id)
+
+    if membership.nil?
+      return false
+    end
+
+    return membership.confirmed
+  end
+
+  def isApplied(user)
+    membership = self.memberships.find_by(user_id: user.id, beer_club_id: self.id)
+
+    if membership.nil?
+      return false
+    end
+
+    return !membership.confirmed
+  end
 end

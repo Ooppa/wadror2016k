@@ -26,6 +26,14 @@
           <li> <%= link_to beer_club.name, beer_club_path(beer_club)%> </li>
       <% end %>
     </ul>
+    <h3>applied membership of</h3>
+    <ul>
+      <% @user.beer_clubs.each do |club| %>
+          <%if club.isApplied(@user) %>
+            <li><%= link_to club.name, beer_club_path(club) %></li>
+          <% end %>
+      <% end %>
+    </ul>
 <% end %>
 
 <% if @user.ratings %>

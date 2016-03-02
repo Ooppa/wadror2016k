@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => 'home#index'
+  root :to => 'beers#index'
 
   resources :styles
   resources :memberships
@@ -18,11 +18,15 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
 
+  # Togglet
   resources :breweries do
     post 'toggle_activity', on: :member
   end
   resources :users do
     post 'froze_and_activate', on: :member
+  end
+  resources :beer_clubs do
+    post 'toggle_confirmed', on: :member
   end
 
   # JS Toiminnallisuus

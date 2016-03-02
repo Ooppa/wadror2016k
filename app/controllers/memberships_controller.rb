@@ -25,6 +25,17 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(membership_params)
+    @membership.confirmed = false # Oletuksena ei kuulu ryhmään vaan odottaa hyväksyntää
+
+    club = BeerClub.find membership_params[:beer_club_id]
+    if not current_user.in? club.users and @membership.save
+      current_user.memberships << @membership
+      @membership.save
+      redirect_to club, notice: "#{current_user.username}, welcome to the club!"
+    else
+      @clubs = BeerClub.all
+      render :new
+    end
 
     respond_to do |format|
       if @membership.save
@@ -69,6 +80,6 @@ class MembershipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
-      params.require(:membership).permit(:beer_club_id, :user_id)
+      params.require(:membership).permit(:beer_club_id, :user_id, :confirmed)
     end
 end
