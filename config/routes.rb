@@ -24,4 +24,7 @@ Rails.application.routes.draw do
   resources :users do
     post 'froze_and_activate', on: :member
   end
+
+  # JS Toiminnallisuus
+  get 'beerlist', to:'beers#list'
 end

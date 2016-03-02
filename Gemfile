@@ -15,6 +15,9 @@ gem 'httparty'
 # Bootsrap
 gem 'bootstrap-sass'
 
+# JS Toiminnallisuus
+gem 'jquery-turbolinks'
+
 # groups
 group :development do
   gem 'sqlite3'
